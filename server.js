@@ -2,6 +2,7 @@ const express = require('express');
 const morgan = require('morgan');
 const basicAuth = require('express-basic-auth');
 const randomstring = require("randomstring");
+const bodyParser = require("body-parser");
 
 const data = [
   {
@@ -12,6 +13,7 @@ const data = [
 
 const app = express();
 
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(basicAuth({
     users: { 'admin': 'supersecret' },
     challenge: true,
@@ -35,6 +37,21 @@ app.get('/:id', (req, res) => {
     res.status(404);
     res.send('404 Not Found');
   };
+});
+
+app.post('/', (req, res) => {
+  const oUrl = req.body.oUrl;
+  let id;
+  while(1) {
+    const candidate = randomstring.generate(6);
+    const matched = data.find(item => item.id === candidate);
+    if (!matched) {
+      id = candidate;
+      break;
+    };
+  }
+  data.push({id, oUrl});
+  res.redirect('/');
 })
 
 app.listen(3000, () => {
