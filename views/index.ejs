@@ -16,7 +16,7 @@
   </head>
 
   <body>
-    <nav class="navbar navbar-expand-md fixed-top navbar-light bg-light">
+    <nav class="navbar navbar-expand-md fixed-top navbar-dark bg-primary">
       <a class="navbar-brand" href="#">URL SHRTN</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -30,7 +30,23 @@
       </div>
     </nav>
     <div class="container">
-
+      <table class="table">
+        <thead class="thead-default">
+          <tr>
+            <th>ID</th>
+            <th>Original URL</th>
+            <th>Short URL</th>
+          </tr>
+        </thead>
+        <tbody>
+        <% data.forEach(item => { %>
+          <tr>
+            <th scope="row"><%= item.id %></th>
+            <td><%= item.oUrl %></td>
+          </tr>
+        <% }) %>
+        </tbody>
+      </table>
     </div><!-- /.container -->
 
 
