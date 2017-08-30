@@ -1,11 +1,12 @@
 const express = require('express');
 const morgan = require('morgan');
 const basicAuth = require('express-basic-auth');
+const randomstring = require("randomstring");
 
 const data = [
   {
     oUrl: 'https://google.com/',
-    id: '123abc'
+    id: randomstring.generate(6)
   }
 ];
 
