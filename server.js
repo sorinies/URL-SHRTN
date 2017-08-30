@@ -5,7 +5,9 @@ const basicAuth = require('express-basic-auth');
 const app = express();
 
 app.use(basicAuth({
-    users: { 'admin': 'supersecret' }
+    users: { 'admin': 'supersecret' },
+    challenge: true,
+    realm: 'Imb4T3st4pp'
 }));
 
 app.set('view engine', 'ejs');
